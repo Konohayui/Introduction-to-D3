@@ -1,3 +1,8 @@
+// start = document.getElementById("StartDate").value;
+// end = document.getElementById("EndDate").value;
+
+// const api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=' + state + '&end=' + end;
+
 //https://www.coindesk.com/api
 //API to fetch historical data of Bitcoin Price Index
 
