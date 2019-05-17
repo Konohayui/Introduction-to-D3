@@ -6,6 +6,14 @@
     <body>
         <h1>Price History of Bit-Coin</h1>
         
+        <from action = "/action_page.php">
+        Start Date: <input type = "text" name = "StateDate" id = "StateDate", value = "2018-12-31"><br>
+        End Date: <input type = "text" name = "EndDate" id = "EndDate" value = "2019-05-01"><br>
+        <input type = "submit" value = "submit">
+        </from>
+        
+        <p></p>
+        
         <svg class="line-chart"></svg>
         
         <script src="https://d3js.org/d3.v4.min.js"></script>
