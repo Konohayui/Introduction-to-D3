@@ -1,5 +1,5 @@
-// start = document.getElementById("StartDate").value;
-// end = document.getElementById("EndDate").value;
+// var start = document.getElementById("StartDate").value;
+// var end = document.getElementById("EndDate").value;
 
 // const api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=' + state + '&end=' + end;
 
