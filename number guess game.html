@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>Number Guessing Game</title>
+    <style>
+    html {
+      font-family: times;
+    }
+    
+    body {
+      width: 50%;
+      max-width: 800px;
+      max-height: 600px;
+      margin: auto;
+    }
+    
+    .last_result {
+      color: white;
+      padding: 3px;
+    }
+    
+    </style>
+  </head>
+  <body>
+    <h1>
+      Number Guessing Game
+    </h1>
+    <div class = "form">
+      <label for = "guess_field"> Enter a number: </label><input type = "text" id = "guess_field", class = "guess_field">
+      <input type = "submit" value = "submit guess" class = "submit_guess">
+    </div>
+    <div class = "game">
+      <p class = "guesses"></p>
+      <p class = "last_result"></p>
+      <p class = "test"></p>
+    </div>
+    
+    <script>
+    	let final_answer = Math.floor(Math.random()*100) + 1;
+      const guesses = document.querySelector(".guesses");
+      const last_result = document.querySelector(".last_result");
+      const test = document.querySelector(".test");
+      const submit_guess = document.querySelector(".submit_guess");
+      const guess_field = document.querySelector(".guess_field");
+      
+      let count = 1;
+      let reset_button;
+      
+      submit_guess.addEventListener("click", check_guess);
+      
+      function check_guess() {
+        let user_guess = Number(guess_field.value);
+        if (count === 1) {
+          guesses.textContent = "previous guesses: ";
+        }
+        guesses.textContent += user_guess + " ";
+        
+        if (user_guess === final_answer) {
+          last_result.textContent = "You got it!";
+          last_result.style.backgroundColor = "green";
+          test.textContent = "";
+          setGameOver();
+        }
+        else if (count === 10) {
+          last_result.textContent = "Game Over";
+          test.textContent = "";
+          setGameOver();
+        }
+        else {
+          last_result.textContent = "Incorrect!";
+          last_result.style.backgroundColor = "red";
+          if (user_guess < final_answer) {
+            test.textContent = "Too small!";
+          }
+          else if (user_guess > final_answer) {
+            test.textContent = "Too big!";
+          }
+        }
+        
+        count ++;
+        guess_field.value = "";
+        guess_field.focus();
+      }
+      
+      function setGameOver() {
+      	guess_field.disabled = true;
+        submit_guess.disabled = true;
+        reset_button = document.createElement("button");
+        reset_button.textContent = "Start a New Game!";
+        document.body.appendChild(reset_button);
+        reset_button.addEventListener("click", resetGame);
+      }
+      
+      function resetGame() {
+      	count = 1;
+        const game_params = document.querySelectorAll(".game p");
+        for (let i = 0; i < game_params.length; i++) {
+        	game_params[i].textContent = "";
+        }
+        
+        reset_button.parentNode.removeChild(reset_button);
+        guess_field.disabled = false;
+        submit_guess.disabled = false;
+        last_result.style.backgroundColor = "white";
+        guess_field.value = "";
+        final_answer = Math.floor(Math.random()*100) + 1;
+      }
+    </script>
+  </body>
+</html>
